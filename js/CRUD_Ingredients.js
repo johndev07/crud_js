@@ -8,7 +8,7 @@ function update(id) {
   let listId = document.querySelector(`#${id}`);
   console.log(listId);
   let updateButton = document.querySelector(".input-container > .update");
-  listId.textContent = InputText.value;
+  listId.childNodes[0].nodeValue = InputText.value;
   addButton.style.display = "block";
   InputText.value = "";
   updateButton.remove();
@@ -33,6 +33,7 @@ function deleteIngredients(id) {
 let id = 1;
 addButton.addEventListener("click", () => {
   let li = document.createElement("li");
+  if (!InputText.value) return;
   li.textContent = InputText.value;
   errorContainer.textContent = `your Ingredient ${InputText.value} has been added succesfully`;
   errorContainer.style.display = "block";
@@ -40,7 +41,7 @@ addButton.addEventListener("click", () => {
     errorContainer.style.display = "none";
   }, 2000);
   li.setAttribute("id", `id${id}`);
-  let editIcon = `<div class="icons"><span class="edit"><ion-icon name="create-outline"></ion-icon></span><span class="delete"><ion-icon name="trash-outline"></ion-icon></span></div>`;
+  let editIcon = `<div class="icons"><span class="edit"><img src="images/edit.svg" alt="add button"/></span><span class="delete"><img src="images/delete-filled.svg" alt="add button"/></span></div>`;
 
   li.insertAdjacentHTML("beforeend", editIcon);
   let span = li.querySelectorAll(".icons > span");
